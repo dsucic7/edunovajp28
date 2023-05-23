@@ -64,23 +64,29 @@ alter table clan add foreign key (grupa) references grupa(sifra);
 
 
 -- najlosiji nacin unosa
-
+-- 1 za tablicu grupa vrijednost za smjer
 insert into smjer values
 (null,'Java programiranje ŠČ',995.42,73,130,true);
 
 -- malo bolji nacin unosa
-
+-- 2 za tablicu grupa vrijednost za smjer
 insert into smjer (naziv,trajanje) values
 ('Web programiranje',250);
   
 -- primjer dobre prakse (best practice)
- 
+-- 3 za tablicu grupa vrijednost za smjer 
  insert into smjer (sifra,naziv,cijena,upisnina,trajanje,verificiran) values
  (null,'PHP programiranje ', 850,73,130,false);
 
 select * from osoba; 
 
 insert into osoba (sifra,ime,prezime,oib,email) values
+
+-- sifra 1 za tablicu predavac, vanjski kljuc pa povezuje tablicu sa osoba
+
+(null,'Tomislav','Jakopec',null,'tjakopec9@gmail.com'),
+
+-- sifra 2 do 26 polaznici, povezuje sa tablicom osoba 
 
 (null,'Denis','Simov',null,'dsimov19@gmail.com'),
 (null,'Ivan','Islentiev',null,'ivanislentiev@hotmail.com'),
@@ -107,3 +113,42 @@ insert into osoba (sifra,ime,prezime,oib,email) values
 (null,'Marko','Ivanović',null,'markoivanovic19@gmail.com'),
 (null,'Emina','Vejsilović',null,'emiomiemi@gmail.com'),
 (null,'Ana','Jurić',null,'ana.juric19@gmail.com');
+
+
+
+select * from predavac; 
+
+insert into predavac (osoba) values(1); -- kod osoba sifra 1 je predavac
+
+select * from polaznik;
+
+insert into polaznik (osoba) values 
+
+(2),(3),(4),(5),(6),(7),(8),(9),(10),(11),(12),
+(13),(14),(15),(16),(17),(18),(19),(20),(21),(22),
+(23),(24),(25),(26) ;
+
+select * from grupa;
+
+-- 1 unese u grupu java programiranje
+insert into grupa (naziv,smjer,maxpolaznika,predavac) values
+ ('JP28',1,25,1); 
+
+
+-- 2 unese u grupu Web programiranje 
+insert into grupa (naziv,smjer,maxpolaznika,predavac) values
+ ('WP1',2,25,1);
+
+insert into grupa(naziv,smjer,maxpolaznika,predavac) values
+('PHP programiranje',3,25,1);
+
+select * from clan;
+
+insert into clan (grupa,polaznik) values
+(1,1),(1,2),(1,3),(1,4),(1,5),(1,6),(1,7),
+(1,8),(1,9),(1,10),(1,11),(1,12),(1,13),(1,14),
+(1,15),(1,16),(1,17),(1,18),(1,19),(1,20),(1,21),
+(1,22),(1,23),(1,24),(1,25);
+
+
+
